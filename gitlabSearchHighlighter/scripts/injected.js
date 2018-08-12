@@ -49,6 +49,7 @@ function safe_inject() {
     console.log("Script finished loading and executing");
     var keyword = $( "input[name='search']" ).attr( 'value' );
     if (typeof keyword !== null) $( "li" ).mark( keyword.toString() );
+    if (typeof keyword !== null) $( ".results" ).mark( keyword.toString() );
   });
 
 }

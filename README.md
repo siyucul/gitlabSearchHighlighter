@@ -4,11 +4,11 @@ This was [jQueryInjector](https://github.com/attilathedud/jQueryInjector). And I
 # Usage
 - `git clone` this repo.
 - `cd` to the repo folder.
-- Open `chrome://extensions/` in Chrome.
+- Open `chrome://extensions/` in Chrome and set to *Developer mode*.
 - Choose *LOAD UNPACKED* and select `./gitlabSearchHighlighter` in current repo folder.
 
 # TODO
-- [ ] Highlight code
+- [x] Highlight code
 - [ ] Highlight multiple keywords
 - [ ] Support Safari
 
