@@ -1,19 +1,19 @@
 var options = {
-    'jQueryURL'     		: '//code.jquery.com/jquery-3.2.1.min.js',
+    'jQueryURL'     		: 'https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js',
 	'deleteOtherReferences' : false
 };
 
 /*!
-*	Inject jQuery by writing a reference to the script at the end of document head. 
+*	Inject jQuery by writing a reference to the script at the end of document head.
 *	Since content-scripts will fire after the DOM is finished, this won't cause any issues.
 *
-*	We can't check for instances of jQuery on the page since content-scripts are sandboxed. 
+*	We can't check for instances of jQuery on the page since content-scripts are sandboxed.
 *	However, we can check for other loaded scripts that include jQuery.
 */
 function safe_inject() {
 	if( document.head == null || document.head.length === 0 ) {
 		document.getElementsByTagName( 'html' )[ 0 ].insertBefore( document.createElement( 'head' ), document.body );
-	}  
+	}
 
 	if( options[ "deleteOtherReferences" ] == true && document.scripts != null && document.scripts.length > 0 ) {
 		/*!
@@ -45,6 +45,12 @@ function safe_inject() {
 	};
 
 	document.head.appendChild( script );
+  script.addEventListener("load", function(event) {
+    console.log("Script finished loading and executing");
+    var keyword = $( "input[name='search']" ).attr( 'value' );
+    if (typeof keyword !== null) $( "li" ).mark( keyword.toString() );
+  });
+
 }
 
 /*!

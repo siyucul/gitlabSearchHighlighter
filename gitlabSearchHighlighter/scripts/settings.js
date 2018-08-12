@@ -1,6 +1,6 @@
 var options = {
-    'jQueryURL'     		: '//code.jquery.com/jquery-3.2.1.min.js',
-    'alwaysInjectURLs'		: [],
+    'jQueryURL'     		: 'https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js',
+    'alwaysInjectURLs'		: ['https://gitlab.com/search'],
 	'deleteOtherReferences' : false
 };
 

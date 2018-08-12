@@ -1,0 +1,38 @@
+{
+  "manifest_version":   2,
+  "name"            :   "Gitlab Search Highlighter",
+  "short_name"      :   "Gitlab Search Highlighter",
+  "version"         :   "0.0.1",
+  "description"     :   "Highlight Gitlab search result.",
+  "browser_action"  :   {
+                            "name"  : "Gitlab Search Highlighter",
+                            "default_popup": "pages/popup_settings.html"
+                        },
+  "icons"           :   {
+                            "16": "imgs/gitlab_icon_16.png",
+                            "48": "imgs/gitlab_icon_48.png",
+                            "128": "imgs/gitlab_icon_128.png"
+                        },
+  "permissions"     :   [
+                            "contextMenus",
+                            "storage",
+                            "tabs"
+                        ],
+  "background"      :   {
+                            "scripts" : [
+                              "scripts/thirdParty/jquery-3.3.1.min.js",
+                              "scripts/thirdParty/jquery.mark.js",
+                              "scripts/background.js"
+                               ]
+                        },
+  "options_page"    :   "pages/settings.html",
+  "content_scripts" :   [{
+                            "matches": [ "<all_urls>" ],
+                            "js": [
+                              "scripts/thirdParty/jquery-3.3.1.min.js",
+                              "scripts/thirdParty/jquery.mark.js",
+                              "scripts/injected.js"
+                            ],
+                            "all_frames": true
+                        }]
+}

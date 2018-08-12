@@ -1,5 +1,5 @@
 var options = {
-    'alwaysInjectURLs'     : []
+    'alwaysInjectURLs'     : ['https://gitlab.com/search']
 };
 
 function contextMenu_onclick( info, tab ) {
@@ -12,16 +12,16 @@ function contextMenu_onclick( info, tab ) {
         tab_id = tabs[ 0 ].id;
 
         chrome.tabs.sendMessage( tab_id, { "function" : "inject" } );
-    }); 
+    });
 };
 
 chrome.contextMenus.create({
-    "title"     : "jQuery Injector",
+    "title"     : "Gitlab Search Highlight",
     "contexts"  :[ "all" ],
     "onclick"   : contextMenu_onclick
-});  
+});
 
-chrome.tabs.onUpdated.addListener( function( tabId, changeInfo, tab ) { 
+chrome.tabs.onUpdated.addListener( function( tabId, changeInfo, tab ) {
     for( url in options[ 'alwaysInjectURLs'] ) {
         if( tab.url.indexOf( options[ 'alwaysInjectURLs'][ url ] ) != -1 ) {
             chrome.tabs.sendMessage( tabId, { "function" : "inject" } );
@@ -34,7 +34,7 @@ chrome.tabs.onUpdated.addListener( function( tabId, changeInfo, tab ) {
 chrome.runtime.onMessage.addListener( function( message, sender, sendResponse ) {
     if( message.jqueryPresent ) {
         chrome.browserAction.setIcon({
-            path: "../imgs/logo16_activated.png",
+            path: "../imgs/gitlab_icon_16_activated.png",
             tabId: sender.tab.id
         });
     }
